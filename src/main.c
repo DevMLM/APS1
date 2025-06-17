@@ -1,9 +1,9 @@
 #include "comum.h"
 #include "Utils/utils.h"
-#include "Evento/eventos.h" 
+#include "Evento/eventos.h"
 #include "Participantes/participantes.h"
 #include "Inscricoes/inscricoes.h"
-#include "FilaPilha/filaPilha.h" 
+#include "FilaPilha/filaPilha.h"
 #include "Persistencia/persist.h"
 
 
@@ -14,10 +14,10 @@ FilaEspera *inicio_fila = NULL, *fim_fila = NULL;
 Part *hash_table[HASH_SIZE] = {NULL};
 PilhaEventos *topo_pilha = NULL;
 int next_evento_id = 1, next_part_id = 1, total_eventos = 0;
-Evento **indice_nome = NULL; // Para busca indexada
-int total_indice = 0; // Tamanho atual do índice
+Evento **indice_nome = NULL;
+int total_indice = 0;
 
-// Protótipos das funções locais
+// Protótipos das funções locais (que só existem neste arquivo .c)
 void menuUsuario();
 void menuAdmin();
 
@@ -26,15 +26,13 @@ void menuUsuario() {
     int op;
     char email_usuario[MAX];
 
-    printf("\nDigite seu email para identificacao: ");
-    obterStringSegura(email_usuario, MAX, "");
+    obterStringSegura(email_usuario, MAX, "\nDigite seu email para identificacao: ");
     
     while (!validarEmail(email_usuario)) {
         printf(RED "Email invalido! Digite novamente: " RESET);
-        obterStringSegura(email_usuario, MAX, "");
+        obterStringSegura(email_usuario, MAX, "Email: ");
     }
 
-    // Exibe apenas a parte antes do @ no menu
     char email_display[MAX];
     char *arroba = strchr(email_usuario, '@');
     if (arroba) {
@@ -74,8 +72,7 @@ void menuUsuario() {
                 listarEventos();
 
                 char nome_evento[MAX];
-                printf("\nNome do evento: ");
-                obterStringSegura(nome_evento, MAX, "");
+                obterStringSegura(nome_evento, MAX, "\nNome do evento: ");
 
                 Evento *e = buscaIndexada(nome_evento);
                 if (!e) {
@@ -118,7 +115,7 @@ void menuAdmin() {
 
     while (tentativas < MAX_TENTATIVAS) {
         printf("\nDigite a senha de administrador: ");
-        lerSenha(senha, MAX);  // Função segura para ler senha
+        lerSenha(senha, MAX);
 
         if (autenticarAdmin(senha)) {
             break;
@@ -126,7 +123,7 @@ void menuAdmin() {
         
         tentativas++;
         printf(RED "\nSenha incorreta! Tentativas restantes: %d\n" RESET, 
-              MAX_TENTATIVAS - tentativas);
+               MAX_TENTATIVAS - tentativas);
         
         if (tentativas >= MAX_TENTATIVAS) {
             printf(RED "Acesso negado.\n" RESET);

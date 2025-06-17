@@ -1,15 +1,13 @@
-// Evento/eventos.h
 #ifndef EVENTOS_H
 #define EVENTOS_H
 
-#include "comum.h" // Para as definições de Evento, Part, etc.
+#include "comum.h"
 
-// Protótipos das funções de gerenciamento de eventos
 void cadastrarEvento();
 void listarEventos();
 void bubbleSort();
-Evento* merge(Evento *a, Evento *b); // Helper para mergeSort
-void split(Evento *source, Evento **front, Evento **back); // Helper para mergeSort
+Evento* merge(Evento *a, Evento *b);
+void split(Evento *source, Evento **front, Evento **back);
 void mergeSort(Evento **head);
 void atualizarIndice();
 Evento* buscaIndexada(char *nome);

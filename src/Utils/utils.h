@@ -1,13 +1,13 @@
-// Utils/utils.h
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "comum.h" // Este aqui precisa funcionar!
+#include "comum.h"
 
-// Protótipos das funções
 void limparBuffer();
 bool validarEmail(const char *email);
 bool autenticarAdmin(const char *senha);
+void lerSenha(char *buffer, int max_len);
+
 void capitalizarNome(char *nome);
 void removerEspacosExtras(char *str);
 bool contemApenasLetras(const char *str);

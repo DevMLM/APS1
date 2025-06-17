@@ -1,29 +1,24 @@
-// persist.h
 #ifndef PERSIST_H
 #define PERSIST_H
 
-#include "comum.h"       // Para as structs e variáveis globais
-#include "utils.h"       // Para limparBuffer e validarEmail (usado indiretamente no carregamento)
-#include "participantes.h" // Para hashParticipante (usado no carregamento de participantes)
-#include "inscricoes.h"
-#include "eventos.h"
+#include "comum.h"
+#include "Utils/utils.h"
+#include "Participantes/participantes.h"
+#include "Inscricoes/inscricoes.h"
+#include "Evento/eventos.h"
 
-
-// Protótipos das funções de salvamento
 void salvarEventosCSV();
 void salvarParticipantesCSV();
 void salvarInscricoesCSV();
 void salvarFilaEsperaCSV();
 void salvarTudoCSV();
 
-// Protótipos das funções de carregamento
 void carregarEventosCSV();
 void carregarParticipantesCSV();
 void carregarInscricoesCSV();
 void carregarFilaEsperaCSV();
 void carregarTudoCSV();
 
-// Protótipo para liberar toda a memória
 void liberarMemoria();
 
 #endif // PERSIST_H

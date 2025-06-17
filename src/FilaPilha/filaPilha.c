@@ -1,8 +1,6 @@
-// FilaPilha/filaPilha.c
-#include "FilaPilha/filaPilha.h" // Inclui os protótipos do próprio módulo
-#include "Evento/eventos.h"    // Necessário para acessar a variável global 'eventos' na função listarFilaEspera
+#include "FilaPilha/filaPilha.h"
+#include "Evento/eventos.h"
 
-// Implementação da função para inserir um participante na fila de espera
 void insereFilaEspera(Evento *e, Part *p) {
     FilaEspera *novo = malloc(sizeof(FilaEspera));
     if (!novo) {
@@ -21,7 +19,6 @@ void insereFilaEspera(Evento *e, Part *p) {
     printf(YELLOW "%s (%s) adicionado a fila de espera do evento %s\n" RESET, p->nome, p->email, e->nome);
 }
 
-// Implementação da função para listar a fila de espera
 void listarFilaEspera() {
     if (!inicio_fila) {
         printf("\n" YELLOW "Fila de espera vazia!\n" RESET);
@@ -30,8 +27,7 @@ void listarFilaEspera() {
     printf("\n" MAGENTA "=== FILA DE ESPERA ===\n" RESET);
     FilaEspera *atual = inicio_fila;
     while (atual) {
-        // Encontra o evento pelo ID (precisa da lista global de eventos)
-        Evento *e = eventos; // 'eventos' é uma variável global de comum.h
+        Evento *e = eventos;
         while (e && e->id != atual->evento_id) e = e->prox;
         if (e) {
             printf(CYAN "Evento: %s | Participante: %s (%s)\n" RESET, e->nome, atual->participante->nome, atual->participante->email);
@@ -42,7 +38,6 @@ void listarFilaEspera() {
     }
 }
 
-// Implementação da função para adicionar um evento à pilha (push)
 void pushEvento(Evento *e) {
     PilhaEventos *novo = malloc(sizeof(PilhaEventos));
     if (!novo) {
@@ -54,7 +49,6 @@ void pushEvento(Evento *e) {
     topo_pilha = novo;
 }
 
-// Implementação da função para remover um evento do topo da pilha (pop)
 Evento* popEvento() {
     if (!topo_pilha) return NULL;
     PilhaEventos *temp = topo_pilha;
@@ -64,7 +58,6 @@ Evento* popEvento() {
     return e;
 }
 
-// Implementação da função para listar os eventos na pilha
 void listarPilhaEventos() {
     if (!topo_pilha) {
         printf(YELLOW "\nPilha de eventos vazia!\n" RESET);
